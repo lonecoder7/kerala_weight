@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kerala Weightlifting Association</title>
-  
+
   <link rel="icon" href="image1.jpeg" type="image/jpeg" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
     /* Custom background pattern */
@@ -28,132 +31,252 @@
       background-position: 0 0, 50px 50px, 100px 25px;
       background-size: 100px 100px, 120px 120px, 150px 150px;
       background-repeat: repeat;
-      color: #333333; /* --foreground */
+      color: #333333;
+      /* --foreground */
     }
 
-    h1, h2, h3, h4, h5, h6, .font-oswald { font-family: 'Oswald', sans-serif; }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .font-oswald {
+      font-family: 'Oswald', sans-serif;
+    }
 
     /* Smooth scrolling */
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #f1f1ff1; }
-    ::-webkit-scrollbar-thumb { background: #B20710; border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: #8a0509; }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1ff1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #B20710;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8a0509;
+    }
 
     /* Animation for mobile menu */
     @keyframes slideInFromTop {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
-    .animate-slide-in-from-top { animation: slideInFromTop 0.3s ease-out; }
+
+    .animate-slide-in-from-top {
+      animation: slideInFromTop 0.3s ease-out;
+    }
   </style>
 
   <style>
     /* Fix: proper keyframes names */
     @keyframes keyframes-fade-in-up {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-up { animation: keyframes-fade-in-up 0.6s ease-out forwards; }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: keyframes-fade-in-up 0.6s ease-out forwards;
+    }
+
+    .stagger-1 {
+      animation-delay: 0.1s;
+    }
+
+    .stagger-2 {
+      animation-delay: 0.2s;
+    }
+
+    .stagger-3 {
+      animation-delay: 0.3s;
+    }
+
+    .stagger-4 {
+      animation-delay: 0.4s;
+    }
 
     .animate-on-scroll {
       opacity: 0;
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0) !important; }
 
-    .hover-lift { transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; }
-    .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) !important;
+    }
+
+    .hover-lift {
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
 
     @keyframes keyframes-glow {
-      0%, 100% { box-shadow: 0 0 5px rgba(178, 7, 16, 0.5); }
-      50% { box-shadow: 0 0 15px rgba(178, 7, 16, 1); }
-    }
-    .animate-glow { animation: keyframes-glow 2s infinite ease-in-out; }
 
-    .loading-dots::after { content: '.'; animation: keyframes-dots 1.4s infinite; }
+      0%,
+      100% {
+        box-shadow: 0 0 5px rgba(178, 7, 16, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 15px rgba(178, 7, 16, 1);
+      }
+    }
+
+    .animate-glow {
+      animation: keyframes-glow 2s infinite ease-in-out;
+    }
+
+    .loading-dots::after {
+      content: '.';
+      animation: keyframes-dots 1.4s infinite;
+    }
+
     @keyframes keyframes-dots {
-      0% { content: '.'; }
-      33% { content: '..'; }
-      66% { content: '...'; }
+      0% {
+        content: '.';
+      }
+
+      33% {
+        content: '..';
+      }
+
+      66% {
+        content: '...';
+      }
     }
 
     /* Responsive calendar wrapper */
-    .calendar-embed { width: 100%; height: 420px; }
-    @media (min-width: 640px) { .calendar-embed { height: 520px; } }
-    @media (min-width: 1024px) { .calendar-embed { height: 640px; } }
-    
+    .calendar-embed {
+      width: 100%;
+      height: 420px;
+    }
+
+    @media (min-width: 640px) {
+      .calendar-embed {
+        height: 520px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .calendar-embed {
+        height: 640px;
+      }
+    }
+
     /* === CSS FOR NEW LEAFLET MAP === */
-    .kerala-map-wrapper { 
-      display: grid; 
-      grid-template-columns: 1fr; /* Default to single column on mobile */
-      min-height: 70vh; 
-      border: 1px solid #e5e7eb; 
+    .kerala-map-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      /* Default to single column on mobile */
+      min-height: 70vh;
+      border: 1px solid #e5e7eb;
       background: #fff;
       border-radius: 0.5rem;
       box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
       overflow: hidden;
     }
-    @media (min-width: 1024px) { /* lg: */
+
+    @media (min-width: 1024px) {
+
+      /* lg: */
       .kerala-map-wrapper {
-        grid-template-columns: 1fr 320px; /* Two columns on desktop */
+        grid-template-columns: 1fr 320px;
+        /* Two columns on desktop */
       }
     }
 
-    #kerala-map { 
-      height: 50vh; /* Fixed height on mobile */
-      width: 100%; 
+    #kerala-map {
+      height: 50vh;
+      /* Fixed height on mobile */
+      width: 100%;
     }
-    @media (min-width: 1024px) { /* lg: */
+
+    @media (min-width: 1024px) {
+
+      /* lg: */
       #kerala-map {
-        height: 70vh; /* Taller height on desktop */
+        height: 70vh;
+        /* Taller height on desktop */
       }
     }
 
-    .kerala-sidebar { 
-      border-top: 1px solid #e5e7eb; /* Top border on mobile */
-      background: #fafafa; 
+    .kerala-sidebar {
+      border-top: 1px solid #e5e7eb;
+      /* Top border on mobile */
+      background: #fafafa;
       display: flex;
       flex-direction: column;
     }
-    @media (min-width: 1024px) { /* lg: */
+
+    @media (min-width: 1024px) {
+
+      /* lg: */
       .kerala-sidebar {
         border-top: none;
-        border-left: 1px solid #e5e7eb; /* Left border on desktop */
+        border-left: 1px solid #e5e7eb;
+        /* Left border on desktop */
       }
     }
-    
-    .kerala-sidebar-inner { 
-      padding: 16px; 
-      font-family: 'Inter', sans-serif; /* Use project font */
+
+    .kerala-sidebar-inner {
+      padding: 16px;
+      font-family: 'Inter', sans-serif;
+      /* Use project font */
       height: 100%;
       overflow-y: auto;
     }
-    .kerala-sidebar-inner h2 { 
-      margin: 0 0 12px; 
-      font-size: 18px; 
-      font-family: 'Oswald', sans-serif; /* Use project font */
+
+    .kerala-sidebar-inner h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-family: 'Oswald', sans-serif;
+      /* Use project font */
       color: #333;
     }
-    .kerala-sidebar-inner ul { 
-      list-style: none; 
-      margin: 0 0 12px; 
-      padding: 0; 
+
+    .kerala-sidebar-inner ul {
+      list-style: none;
+      margin: 0 0 12px;
+      padding: 0;
     }
-    .kerala-sidebar-inner li { 
-      margin: 16px 0; 
+
+    .kerala-sidebar-inner li {
+      margin: 16px 0;
       font-size: 14px;
       display: flex;
       align-items: start;
       gap: 8px;
     }
+
     .kerala-sidebar-inner li strong {
       font-weight: 500;
       color: #555;
@@ -162,69 +285,79 @@
       font-size: 12px;
       text-transform: uppercase;
     }
+
     .kerala-sidebar-inner li span {
       color: #111;
       font-weight: 500;
       word-break: break-word;
     }
-    .kerala-sidebar-inner .hint { 
-      font-size: 12px; 
-      color: #666; 
+
+    .kerala-sidebar-inner .hint {
+      font-size: 12px;
+      color: #666;
       margin-top: 16px;
       padding-top: 16px;
       border-top: 1px solid #e5e7eb;
     }
-    
-    .leaflet-container { 
-      outline: none; 
-      background: #f1f5f9; /* Lighter background for map */
+
+    .leaflet-container {
+      outline: none;
+      background: #f1f5f9;
+      /* Lighter background for map */
     }
 
     /* --- MODAL CSS (From Manoj File) --- */
     #info-modal {
       transition: opacity 0.3s ease, visibility 0.3s ease;
     }
+
     #info-modal.active {
       display: flex !important;
       opacity: 1;
       visibility: visible;
     }
+
     #info-modal .modal-content {
       transform: scale(0.95);
       transition: transform 0.3s ease;
     }
+
     #info-modal.active .modal-content {
       transform: scale(1);
     }
   </style>
 </head>
+
 <body>
 
   <div id="app-container"></div>
 
-  <div id="info-modal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/60 backdrop-blur-sm opacity-0">
-    <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl m-4 max-h-[90vh] flex flex-col overflow-hidden">
+  <div id="info-modal"
+    class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/60 backdrop-blur-sm opacity-0">
+    <div
+      class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-4xl m-4 max-h-[90vh] flex flex-col overflow-hidden">
       <div class="p-5 border-b border-gray-200 flex justify-between items-center bg-gray-50">
         <h3 id="modal-title" class="text-2xl font-oswald text-[#B20710] uppercase tracking-wide"></h3>
-        <button onclick="closeModal()" class="text-gray-500 hover:text-[#B20710] transition-colors p-2 rounded-full hover:bg-gray-200">
+        <button onclick="closeModal()"
+          class="text-gray-500 hover:text-[#B20710] transition-colors p-2 rounded-full hover:bg-gray-200">
           <i data-lucide="x" class="w-6 h-6"></i>
         </button>
       </div>
       <div id="modal-body" class="p-6 overflow-y-auto bg-white">
-        </div>
+      </div>
     </div>
   </div>
 
   <script>
     // --- GLOBAL STATE & DATA ---
-    
+
     let currentPage = 'home';
     let carouselInterval;
     let heroCarouselInterval; // New interval for hero background
     let currentCarouselIndex = 0;
     let scrollAnimationObserver;
     let parallaxElements = [];
-    
+
     // Data from HomePage.tsx
     const galleryImages = [
       'https://images.unsplash.com/photo-1741478551723-4b7ce95cf395?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWlnaHRsaWZ0aW5nJTIwY29tcGV0aXRpb24lMjBhdGhsZXRlfGVufDF8fHx8MTc2MjMzNDIzN3ww&ixlib-rb-4.1.0&q=80&w=1080',
@@ -237,22 +370,22 @@
     ];
     const leadershipProfiles = [
       {
-        name: 'Mr. Rajesh Kumar',
+        name: 'Mr. ALUKKA JOSE VARGHESE',
         position: 'President',
         quote: 'Strength is not just about lifting weights, it\'s about lifting each other and building a community of champions.',
-        imageUrl: 'https://images.unsplash.com/photo-1629507208649-70919ca33793?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzc21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2MjI0NzMwOXww&ixlib-rb-4.1.0&q=80&w=1080',
+        imageUrl: 'src2.jpeg', /* <-- Replace with your first image filename */
       },
       {
-        name: 'Ms. Priya Menon',
+        name: 'Ms. CHITHRA CHANDRAMOHAN',
         position: 'Vice President',
         quote: 'Our mission is to empower athletes and create opportunities for every individual to reach their peak potential.',
-        imageUrl: 'https://images.unsplash.com/photo-1581065178026-390bc4e78dad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2MjI2NjkyMnww&ixlib-rb-4.1.0&q=80&w=1080',
+        imageUrl: 'src1.jpeg', /* <-- Your provided image filename */
       },
       {
-        name: 'Mr. Arun Nair',
+        name: 'Mr. VENUG NAIR',
         position: 'General Secretary',
         quote: 'Excellence in weightlifting comes from dedication, discipline, and the unwavering support of our community.',
-        imageUrl: 'https://images.unsplash.com/photo-1672685667592-0392f458f46f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBtYW4lMjBwb3J0cmFpdHxlbnwxfHx8fDE3NjIyNjE3MTh8MA&ixlib-rb-4.1.0&q=80&w=1080',
+        imageUrl: 'image3.jpeg', /* <-- Replace with your third image filename */
       },
     ];
 
@@ -301,7 +434,7 @@
       { title: 'Junior Training Camp', date: 'April 5-12, 2025', location: 'Kochi Training Center', time: '6:00 AM - 12:00 PM', participants: 'Selected Athletes', description: 'Intensive training camp for junior athletes preparing for national competitions.' },
       { title: 'District Qualifiers - North Zone', date: 'May 8-9, 2025', location: 'Kozhikode Indoor Stadium', time: '10:00 AM - 5:00 PM', participants: 'Northern Districts', description: 'Qualification event for athletes from Kasaragod, Kannur, Kozhikode, and Wayanad.' },
     ];
-    
+
     // Data from KeralaMap.tsx
     const districts = [
       { id: 'thiruvananthapuram', name: 'Thiruvananthapuram District Weightlifting Association', contactPerson: 'Mr. Suresh P.', contactNumber: '+91 90000 00001', email: 'tvm.wla@example.com' },
@@ -327,14 +460,14 @@
       { name: "Vishnu P", event: "Gold - Youth Nationals", img: "https://images.unsplash.com/photo-1534367507873-d2d7e24c797f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" },
       { name: "Anjali M", event: "Bronze - Junior Nationals", img: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" },
     ];
-    
+
     // --- ANIMATION & INTERACTION FUNCTIONS ---
-    
+
     function initializeAnimations() {
       setupScrollAnimations();
       setupParallaxEffects();
     }
-    
+
     function setupScrollAnimations() {
       if ('IntersectionObserver' in window) {
         scrollAnimationObserver = new IntersectionObserver((entries) => {
@@ -354,7 +487,7 @@
           threshold: 0.1,
           rootMargin: '0px 0px -50px 0px'
         });
-        
+
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
           el.style.opacity = '0';
           el.style.transform = 'translateY(20px)';
@@ -363,7 +496,7 @@
         });
       }
     }
-    
+
     function setupParallaxEffects() {
       parallaxElements = Array.from(document.querySelectorAll('[data-parallax="true"]'));
       window.addEventListener('scroll', () => {
@@ -375,23 +508,23 @@
         });
       });
     }
-    
+
     function showToast(message, type = 'info') {
       const toast = document.createElement('div');
       let bgColor = 'bg-blue-500';
       if (type === 'success') bgColor = 'bg-green-500';
       if (type === 'error') bgColor = 'bg-red-500';
-      
+
       toast.className = `fixed top-20 right-4 z-[9999] p-4 rounded-lg shadow-lg ${bgColor} text-white transition-all duration-300 transform translate-x-full`;
       toast.textContent = message;
-      
+
       document.body.appendChild(toast);
-      
+
       // Animate in
       setTimeout(() => {
         toast.style.transform = 'translateX(0)';
       }, 100);
-      
+
       // Animate out
       setTimeout(() => {
         toast.style.transform = 'translateX(120%)';
@@ -404,7 +537,7 @@
       const modal = document.getElementById('info-modal');
       const title = document.getElementById('modal-title');
       const body = document.getElementById('modal-body');
-      
+
       if (type === 'executive') {
         title.textContent = 'Executive Committee';
         let rows = executiveCommitteeData.map((item, idx) => `
@@ -442,7 +575,7 @@
         `).join('');
         body.innerHTML = `<div class="bg-gray-50 p-4 rounded-lg">${rows}</div>`;
       }
-      
+
       modal.classList.remove('hidden');
       // Trigger reflow
       void modal.offsetWidth;
@@ -454,7 +587,7 @@
       modal.classList.remove('active');
       setTimeout(() => {
         modal.classList.add('hidden');
-      }, 300); 
+      }, 300);
     }
 
     // --- COMPONENT FUNCTIONS (Return HTML Strings) ---
@@ -467,7 +600,7 @@
         { id: 'results', label: 'Results' },
         { id: 'contact', label: 'Contact' },
       ];
-      
+
       return `
         <nav class="fixed top-0 left-0 right-0 z-50 bg-[#333333] shadow-lg">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -483,11 +616,10 @@
                 ${navItems.map(item => `
                   <button
                     onclick="handleNavigate('${item.id}')"
-                    class="nav-link px-4 py-2 rounded transition-all duration-300 transform hover:scale-105 ${
-                      activePage === item.id
-                        ? 'bg-[#B20710] text-white shadow-lg animate-glow'
-                        : 'text-white hover:bg-[#444444] hover:shadow-md'
-                    }"
+                    class="nav-link px-4 py-2 rounded transition-all duration-300 transform hover:scale-105 ${activePage === item.id
+          ? 'bg-[#B20710] text-white shadow-lg animate-glow'
+          : 'text-white hover:bg-[#444444] hover:shadow-md'
+        }"
                   >
                     ${item.label}
                   </button>
@@ -503,11 +635,10 @@
               ${navItems.map(item => `
                 <button
                   onclick="handleNavigate('${item.id}')"
-                  class="nav-link block w-full text-left px-4 py-3 rounded transition-all duration-300 transform hover:scale-105 ${
-                    activePage === item.id
-                      ? 'bg-[#B20710] text-white shadow-lg animate-glow'
-                      : 'text-white hover:bg-[#444444] hover:shadow-md'
-                  }"
+                  class="nav-link block w-full text-left px-4 py-3 rounded transition-all duration-300 transform hover:scale-105 ${activePage === item.id
+            ? 'bg-[#B20710] text-white shadow-lg animate-glow'
+            : 'text-white hover:bg-[#444444] hover:shadow-md'
+          }"
                 >
                   ${item.label}
                 </button>
@@ -554,7 +685,7 @@
                   </li>
                   <li class="flex items-center gap-2">
                     <i data-lucide="mail" class="w-4 h-4 text-[#B20710]"></i>
-                    <a href="mailto:info@keralawla.org" class="hover:text-[#B20710]">info@keralawla.org</a>
+                    <a href="mailto:kswasecretary@gmail.com" class="hover:text-[#B20710]">kswasecretary@gmail.com</a>
                   </li>
                   <li class="flex items-start gap-2">
                     <i data-lucide="map-pin" class="w-4 h-4 text-[#B20710] mt-1 flex-shrink-0"></i>
@@ -634,7 +765,7 @@
         </div>
       `;
     }
-    
+
     // --- PAGE COMPONENTS ---
 
     function HomePage() {
@@ -900,7 +1031,7 @@
         </div>
       `;
     }
-    
+
     // UPDATED RESULTS PAGE FROM MANOJ.HTML
     function ResultsPage() {
       return `
@@ -921,9 +1052,9 @@
                 class="w-full appearance-none bg-white border-2 border-gray-300 text-gray-700 font-medium text-base rounded-lg focus:ring-[#B20710] focus:border-[#B20710] block p-4 pr-10 cursor-pointer shadow-sm hover:border-[#B20710] transition-colors outline-none"
               >
                 <option value="" selected disabled>Select Event to View Awardees...</option>
-                <option value="#">State Championship 2024 (PDF)</option>
-                <option value="#">National Games 2023 (PDF)</option>
-                <option value="#">District Meet 2023 (PDF)</option>
+                <option value="trail1.pdf">State Championship 2024 (PDF)</option>
+                <option value="trail2.pdf">National Games 2023 (PDF)</option>
+                <option value="trail3.pdf">District Meet 2023 (PDF)</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500 group-hover:text-[#B20710]">
                 <i data-lucide="chevron-down" class="w-6 h-6"></i>
@@ -972,7 +1103,7 @@
               <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="flex items-start gap-3"><i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6 text-[#B20710] flex-shrink-0 mt-1"></i><div><h3 class="text-[#333333] mb-2 text-base sm:text-lg">Head Office</h3><p class="text-xs sm:text-sm text-gray-600">Sports Complex, Near Stadium<br />Thiruvananthapuram, Kerala 695001<br />India</p></div></div>
                 <div class="flex items-start gap-3"><i data-lucide="phone" class="w-5 h-5 sm:w-6 sm:h-6 text-[#B20710] flex-shrink-0 mt-1"></i><div><h3 class="text-[#333333] mb-2 text-base sm:text-lg">Phone</h3><p class="text-xs sm:text-sm text-gray-600">+91 471 234 5678<br />+91 471 234 5679<br />(Mon-Fri, 9:00 AM - 5:00 PM)</p></div></div>
-                <div class="flex items-start gap-3"><i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6 text-[#B20710] flex-shrink-0 mt-1"></i><div><h3 class="text-[#333333] mb-2 text-base sm:text-lg">Email</h3><p class="text-xs sm:text-sm text-gray-600">info@keralawla.org<br />secretary@keralawla.org</p></div></div>
+                <div class="flex items-start gap-3"><i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6 text-[#B20710] flex-shrink-0 mt-1"></i><div><h3 class="text-[#333333] mb-2 text-base sm:text-lg">Email</h3><p class="text-xs sm:text-sm text-gray-600">kswasecretary@gmail.com<br /></p></div></div>
               </div>
             </div>
 
@@ -1051,7 +1182,7 @@
       `;
     }
 
-    
+
     // --- APP RENDER & CONTROL ---
 
     const appContainer = document.getElementById('app-container');
@@ -1084,19 +1215,19 @@
         <main class="pt-16" id="main-content" style="opacity: 0; transition: opacity 0.5s ease-out;">
           </main>
       `;
-      lucide.createIcons(); 
+      lucide.createIcons();
 
       setTimeout(() => {
         const mainContent = document.getElementById('main-content');
-        
+
         mainContent.innerHTML = renderPage() + Footer();
-        
+
         lucide.createIcons();
         attachAllListeners();
         initializeAnimations();
-        
+
         mainContent.style.opacity = '1';
-        
+
         const overlay = document.getElementById('loading-overlay');
         if (overlay) {
           overlay.style.opacity = '0';
@@ -1104,9 +1235,9 @@
         }
       }, 300);
     }
-    
+
     function handleNavigate(page) {
-      if (currentPage === page) return; 
+      if (currentPage === page) return;
       currentPage = page;
       renderApp();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1124,7 +1255,7 @@
       }
       lucide.createIcons();
     }
-    
+
     // --- EVENT LISTENER INITIALIZATION ---
 
     function attachAllListeners() {
@@ -1143,10 +1274,10 @@
     function initHeroCarousel() {
       const heroContainer = document.getElementById('hero-background-container');
       if (!heroContainer) return;
-      
+
       // Clear container and add images with opacity 0
       heroContainer.innerHTML = '';
-      
+
       galleryImages.forEach((src, idx) => {
         const img = document.createElement('img');
         img.src = src;
@@ -1159,13 +1290,13 @@
       heroCarouselInterval = setInterval(() => {
         const imgs = heroContainer.querySelectorAll('img');
         const nextIndex = (currentHeroIndex + 1) % imgs.length;
-        
+
         imgs[currentHeroIndex].classList.remove('opacity-100');
         imgs[currentHeroIndex].classList.add('opacity-0');
-        
+
         imgs[nextIndex].classList.remove('opacity-0');
         imgs[nextIndex].classList.add('opacity-100');
-        
+
         currentHeroIndex = nextIndex;
       }, 4000); // Change every 4 seconds
     }
@@ -1175,17 +1306,17 @@
       const imgEl = document.getElementById('carousel-image');
       const counterEl = document.getElementById('carousel-counter');
       const dots = document.querySelectorAll('.carousel-dot');
-      if (!imgEl) return; 
+      if (!imgEl) return;
 
       function showImage(index) {
         if (index >= galleryImages.length) index = 0;
         if (index < 0) index = galleryImages.length - 1;
-        
+
         currentCarouselIndex = index;
-        
+
         imgEl.style.opacity = '0.7';
         imgEl.style.transform = 'scale(1.05)';
-        
+
         setTimeout(() => {
           imgEl.src = galleryImages[index];
           imgEl.alt = `Gallery image ${index + 1}`;
@@ -1193,7 +1324,7 @@
           imgEl.style.opacity = '1';
           imgEl.style.transform = 'scale(1)';
         }, 300);
-        
+
         dots.forEach((dot, i) => {
           const isActive = i === index;
           dot.classList.toggle('bg-[#B20710]', isActive);
@@ -1212,7 +1343,7 @@
           showImage(currentCarouselIndex + 1);
         }, 5000);
       }
-      
+
       document.getElementById('carousel-prev').addEventListener('click', () => {
         showImage(currentCarouselIndex - 1);
         resetCarouselInterval();
@@ -1227,147 +1358,148 @@
           resetCarouselInterval();
         });
       });
-      
-      resetCarouselInterval(); 
+
+      resetCarouselInterval();
     }
-    
+
     function initContactForm() {
       // Form initialization logic is no longer needed for Google Forms iframe,
       // but leaving the empty function to prevent errors in attachAllListeners
     }
-    
+
     function initKeralaMap() {
-        if (typeof L === 'undefined') {
-            console.error('Leaflet.js is not loaded.');
-            return;
-        }
+      if (typeof L === 'undefined') {
+        console.error('Leaflet.js is not loaded.');
+        return;
+      }
 
-        const mapContainer = document.getElementById('kerala-map');
-        if (!mapContainer) {
-            return;
-        }
-        
-        if (mapContainer._leaflet_id) {
-          mapContainer._leaflet_id = null;
-        }
+      const mapContainer = document.getElementById('kerala-map');
+      if (!mapContainer) {
+        return;
+      }
 
-        const map = L.map('kerala-map', {
-            scrollWheelZoom: false,
-            zoomControl: true,
-            attributionControl: false,
-            maxBoundsViscosity: 0.9,
-            minZoom: 7,
-            maxZoom: 10,
-            doubleClickZoom: false
+      if (mapContainer._leaflet_id) {
+        mapContainer._leaflet_id = null;
+      }
+
+      const map = L.map('kerala-map', {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: false,
+        maxBoundsViscosity: 0.9,
+        minZoom: 7,
+        maxZoom: 10,
+        doubleClickZoom: false
+      });
+
+      map.setView([10.35, 76.4], 7.5);
+
+      const nameEl = document.getElementById('district-name');
+      const personEl = document.getElementById('info-person');
+      const phoneEl = document.getElementById('info-phone');
+      const emailEl = document.getElementById('info-email');
+
+      if (!nameEl || !personEl || !phoneEl || !emailEl) {
+        return;
+      }
+
+      let selectedLayer = null;
+
+      function randomPastel(seed) {
+        let h = 0;
+        for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 360;
+        const s = 55, l = 70;
+        return `hsl(${h}, ${s}%, ${l}%)`;
+      }
+
+      function districtStyle(feature) {
+        const name = feature.properties?.DISTRICT || 'District';
+        return {
+          fillColor: randomPastel(name),
+          color: '#1f2937',
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.55,
+          className: 'district-default',
+        };
+      }
+
+      function highlight(layer) {
+        layer.setStyle({ weight: 2, fillOpacity: 0.8, color: '#111827' });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+          layer.bringToFront();
+        }
+      }
+
+      function resetHighlight(layer, feature) {
+        layer.setStyle(districtStyle(feature));
+      }
+
+      function updateSidebar(name) {
+        nameEl.textContent = name;
+        const districtId = name.toLowerCase().replace(/\s+/g, '');
+        const d = districts.find(dist => dist.id === districtId);
+
+        if (d) {
+          personEl.textContent = d.contactPerson;
+          phoneEl.innerHTML = `<a href="tel:${d.contactNumber}" class="text-[#B20710] hover:underline">${d.contactNumber}</a>`;
+          emailEl.innerHTML = `<a href="mailto:${d.email}" class="text-[#B20710] hover:underline">${d.email}</a>`;
+        } else {
+          personEl.textContent = 'No contact info found';
+          phoneEl.innerHTML = '<span>–</span>';
+          emailEl.innerHTML = '<span>–</span>';
+        }
+      }
+
+      function onEachFeature(feature, layer) {
+        const name = feature.properties?.DISTRICT || 'District';
+
+        layer.on({
+          mouseover: () => layer.setStyle({ fillOpacity: 0.7 }),
+          mouseout: () => {
+            if (selectedLayer !== layer) layer.setStyle({ fillOpacity: 0.55 });
+          },
+          click: () => {
+            if (selectedLayer && selectedLayer !== layer) {
+              resetHighlight(selectedLayer, selectedLayer.feature);
+            }
+            selectedLayer = layer;
+            highlight(layer);
+            updateSidebar(name);
+            map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+          },
         });
+        layer.bindTooltip(name, { sticky: true });
+      }
 
-        map.setView([10.35, 76.4], 7.5);
+      async function loadDistricts() {
+        const url = 'https://raw.githubusercontent.com/geohacker/kerala/master/geojsons/district.geojson';
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`Failed to load GeoJSON: ${res.status}`);
+          const gj = await res.json();
 
-        const nameEl = document.getElementById('district-name');
-        const personEl = document.getElementById('info-person');
-        const phoneEl = document.getElementById('info-phone');
-        const emailEl = document.getElementById('info-email');
+          const layer = L.geoJSON(gj, {
+            style: districtStyle,
+            onEachFeature,
+          }).addTo(map);
 
-        if (!nameEl || !personEl || !phoneEl || !emailEl) {
-            return;
+          const bounds = layer.getBounds();
+          map.fitBounds(bounds, { padding: [20, 20] });
+          map.setMaxBounds(bounds.pad(0.02));
+        } catch (err) {
+          console.error(err);
+          if (nameEl) nameEl.textContent = 'Error loading districts';
         }
+      }
 
-        let selectedLayer = null;
-
-        function randomPastel(seed) {
-            let h = 0;
-            for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 360;
-            const s = 55, l = 70;
-            return `hsl(${h}, ${s}%, ${l}%)`;
-        }
-
-        function districtStyle(feature) {
-            const name = feature.properties?.DISTRICT || 'District';
-            return {
-                fillColor: randomPastel(name),
-                color: '#1f2937',
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.55,
-                className: 'district-default',
-            };
-        }
-
-        function highlight(layer) {
-            layer.setStyle({ weight: 2, fillOpacity: 0.8, color: '#111827' });
-            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                layer.bringToFront();
-            }
-        }
-
-        function resetHighlight(layer, feature) {
-            layer.setStyle(districtStyle(feature));
-        }
-
-        function updateSidebar(name) {
-            nameEl.textContent = name;
-            const districtId = name.toLowerCase().replace(/\s+/g, '');
-            const d = districts.find(dist => dist.id === districtId);
-
-            if (d) {
-                personEl.textContent = d.contactPerson;
-                phoneEl.innerHTML = `<a href="tel:${d.contactNumber}" class="text-[#B20710] hover:underline">${d.contactNumber}</a>`;
-                emailEl.innerHTML = `<a href="mailto:${d.email}" class="text-[#B20710] hover:underline">${d.email}</a>`;
-            } else {
-                personEl.textContent = 'No contact info found';
-                phoneEl.innerHTML = '<span>–</span>';
-                emailEl.innerHTML = '<span>–</span>';
-            }
-        }
-
-        function onEachFeature(feature, layer) {
-            const name = feature.properties?.DISTRICT || 'District';
-
-            layer.on({
-                mouseover: () => layer.setStyle({ fillOpacity: 0.7 }),
-                mouseout: () => {
-                    if (selectedLayer !== layer) layer.setStyle({ fillOpacity: 0.55 });
-                },
-                click: () => {
-                    if (selectedLayer && selectedLayer !== layer) {
-                        resetHighlight(selectedLayer, selectedLayer.feature);
-                    }
-                    selectedLayer = layer;
-                    highlight(layer);
-                    updateSidebar(name);
-                    map.fitBounds(layer.getBounds(), { padding: [20, 20] });
-                },
-            });
-            layer.bindTooltip(name, { sticky: true });
-        }
-
-        async function loadDistricts() {
-            const url = 'https://raw.githubusercontent.com/geohacker/kerala/master/geojsons/district.geojson';
-            try {
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`Failed to load GeoJSON: ${res.status}`);
-                const gj = await res.json();
-                
-                const layer = L.geoJSON(gj, {
-                    style: districtStyle,
-                    onEachFeature,
-                }).addTo(map);
-
-                const bounds = layer.getBounds();
-                map.fitBounds(bounds, { padding: [20, 20] });
-                map.setMaxBounds(bounds.pad(0.02));
-            } catch (err) {
-                console.error(err);
-                if (nameEl) nameEl.textContent = 'Error loading districts';
-            }
-        }
-
-        loadDistricts();
+      loadDistricts();
     }
-    
+
     // --- INITIAL APP LOAD ---
     document.addEventListener('DOMContentLoaded', renderApp);
 
   </script>
 </body>
+
 </html>
